@@ -1,7 +1,8 @@
 # Lab 1 Assignment
 # Group 7 - Xuan Phat Tran, Kristine Nguyen, Fernanda Lugo
 # 09/06/2026
-# Program description:
+# Program description: Converts unsigned binary and decimal numbers into
+# binary, octal, decimal, and hexadecimal while checking for illegal input.
 
 #Fernanda Lugo's part:
 # Checks whether the number entered is a legal decimal or binary number
