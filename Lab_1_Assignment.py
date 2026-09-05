@@ -74,6 +74,9 @@ def binary_str_to_decimal(binary_str):
         decimal_value += int(bit) * (2 ** power)
         power -= 1
 
+    if not frac_part:
+        return decimal_value
+    
     # fractional part: sum of bit * 2^-position
     frac_value = 0.0
     power = 1
@@ -137,6 +140,9 @@ def convert_number(num_str, num_type):
     num_str: validated number as a string (legality check happens elsewhere)
     num_type: 'binary' or 'decimal'
     """
+    if not is_legal_number(num_str, num_type):
+        raise ValueError(f"Illegal {num_type} number: {num_str!r}")
+    
     if num_type == 'binary':
         decimal_value = binary_str_to_decimal(num_str)
     elif num_type == 'decimal':
