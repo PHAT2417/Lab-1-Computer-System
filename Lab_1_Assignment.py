@@ -1,13 +1,11 @@
 # Lab 1 Assignment
 # Group 7 - Xuan Phat Tran, Kristine Nguyen, Fernanda Lugo
-# 09/06/2026
+# Date: 09/06/2026
 # Program description: The program will ask the users to input a number in binary or decimal (unsigned) and ask the user what kind of number it is. 
 # It will check if the number is legal or not and convert it to the other 3 types of numbers (binary, octal, hexadecimal, decimal).
 
-# Program description: Converts unsigned binary and decimal numbers into
-# binary, octal, decimal, and hexadecimal while checking for illegal input.
 
-#Fernanda Lugo's part:
+#Fernanda Lugo: Validation Function - Legal Number Check
 # Checks whether the number entered is a legal decimal or binary number
 def is_legal_number(number, number_type):
     decimal_points = 0
@@ -50,7 +48,7 @@ def is_legal_number(number, number_type):
 
     return True
 
-#Xuan Phat Tran's part:
+#Xuan Phat Tran: Base Conversion Functions
 HEX_DIGITS = "0123456789ABCDEF"
 
 # Function to convert a binary string to decimal
@@ -154,7 +152,7 @@ def convert_number(num_str, num_type):
         'hexadecimal': decimal_to_hexadecimal(decimal_value)
     }
 
-#Kristine Nguyen's part:
+#Kristine Nguyen: Input Collection and Output Display
 
 # Ask the user to enter the number
 number = input("Enter the number (only unsigned numbers): ")
