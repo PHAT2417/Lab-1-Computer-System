@@ -49,16 +49,6 @@ def is_legal_number(number, number_type):
         return False
 
     return True
-#Kristine Nguyen's part:
-
-# Ask the user to enter the number
-number = input("Enter the number (only unsigned numbers): ")
-# Ask the user what type of number they are entering
-number_type = input("Enter number type: ").lower()
-
-
-
-
 
 #Xuan Phat Tran's part:
 HEX_DIGITS = "0123456789ABCDEF"
@@ -163,3 +153,20 @@ def convert_number(num_str, num_type):
         'octal': decimal_to_octal(decimal_value),
         'hexadecimal': decimal_to_hexadecimal(decimal_value)
     }
+
+#Kristine Nguyen's part:
+
+# Ask the user to enter the number
+number = input("Enter the number (only unsigned numbers): ")
+# Ask the user what type of number they are entering
+number_type = input("Enter number type: ").lower()
+
+# Check if the number is legal and convert it to the other 3 types of numbers.
+if is_legal_number(number, number_type):
+    result = convert_number(number, number_type)
+    print(f"Decimal: {result['decimal']}")
+    print(f"Binary: {result['binary']}")
+    print(f"Octal: {result['octal']}")
+    print(f"Hexadecimal: {result['hexadecimal']}")
+else:
+    print(f"Error: '{number}' is not a legal {number_type} number.")
