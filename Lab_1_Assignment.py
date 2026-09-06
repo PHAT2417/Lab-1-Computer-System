@@ -51,6 +51,13 @@ def is_legal_number(number, number_type):
     return True
 #Kristine Nguyen's part:
 
+# Ask the user to enter the number
+number = input("Enter the number (only unsigned numbers): ")
+# Ask the user what type of number they are entering
+number_type = input("Enter number type (binary or decimal only): ").lower()
+
+
+
 
 
 #Xuan Phat Tran's part:
