@@ -1,1 +1,80 @@
+# ------------------------------------------------------------
+# Name: Fernanda Lugo
+# Lab: Simplified Floating-Point Representation
+# Question 1
+#
+# Description:
+# Converts a decimal floating-point number into a simplified
+# floating-point format using:
+#   1 sign bit
+#   5 exponent bits (Excess-15)
+#   8 significand bits
+# ------------------------------------------------------------
 
+def convert_float(number):
+
+    # Determine the sign bit
+    if number < 0:
+        sign = 1
+        number = abs(number)
+    else:
+        sign = 0
+
+    # Special case for zero
+    if number == 0:
+        return "0 00000 00000000"
+
+    # Normalize the number
+    exponent = 0
+
+    while number >= 2:
+        number = number / 2
+        exponent += 1
+
+    while number < 1:
+        number = number * 2
+        exponent -= 1
+
+    # Add the Excess-15 bias
+    biased_exponent = exponent + 15
+
+    # Check if exponent is in range
+    if biased_exponent < 0 or biased_exponent > 31:
+        return "ERROR: Number is out of range."
+
+    # Convert exponent to 5-bit binary
+    exponent_bits = format(biased_exponent, "05b")
+
+    # Remove the leading 1
+    fraction = number - 1
+
+    # Generate the 8 significand bits
+    significand = ""
+
+    for i in range(8):
+        fraction = fraction * 2
+
+        if fraction >= 1:
+            significand += "1"
+            fraction -= 1
+        else:
+            significand += "0"
+
+    # Return the final 14-bit representation
+    return str(sign) + " " + exponent_bits + " " + significand
+
+
+# Ask the user to enter a number
+user_input = input("Enter a floating-point number: ")
+
+# Check for illegal characters/input
+try:
+    value = float(user_input)
+
+    result = convert_float(value)
+
+    print("Simplified floating-point representation:")
+    print(result)
+
+except ValueError:
+    print("ERROR: Illegal input. Please enter a valid number.")
