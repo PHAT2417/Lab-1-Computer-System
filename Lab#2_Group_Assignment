@@ -4,27 +4,26 @@
 # Question 1
 #
 # Description:
-# Converts a decimal floating-point number into a simplified
-# floating-point format using:
-#   1 sign bit
-#   5 exponent bits (Excess-15)
-#   8 significand bits
+# This program converts a decimal floating-point number into
+# a simplified floating-point representation using:
+# 1 sign bit, 5 exponent bits with Excess-15,
+# and 8 significand bits.
 # ------------------------------------------------------------
 
 def convert_float(number):
 
-    # Determine the sign bit
+    # Determine sign bit
     if number < 0:
-        sign = 1
+        sign_bit = "1"
         number = abs(number)
     else:
-        sign = 0
+        sign_bit = "0"
 
-    # Special case for zero
+    # Handle zero
     if number == 0:
         return "0 00000 00000000"
 
-    # Normalize the number
+    # Normalize the number into the form 1.xxxxx × 2^exponent
     exponent = 0
 
     while number >= 2:
@@ -35,46 +34,48 @@ def convert_float(number):
         number = number * 2
         exponent -= 1
 
-    # Add the Excess-15 bias
+    # Add Excess-15 bias to exponent
     biased_exponent = exponent + 15
 
-    # Check if exponent is in range
+    # Make sure exponent fits in 5 bits
     if biased_exponent < 0 or biased_exponent > 31:
         return "ERROR: Number is out of range."
 
     # Convert exponent to 5-bit binary
     exponent_bits = format(biased_exponent, "05b")
 
-    # Remove the leading 1
+    # Remove the leading 1 from normalized number
     fraction = number - 1
 
-    # Generate the 8 significand bits
-    significand = ""
+    # Create 8 significand bits
+    significand_bits = ""
 
     for i in range(8):
         fraction = fraction * 2
 
         if fraction >= 1:
-            significand += "1"
+            significand_bits += "1"
             fraction -= 1
         else:
-            significand += "0"
+            significand_bits += "0"
 
-    # Return the final 14-bit representation
-    return str(sign) + " " + exponent_bits + " " + significand
+    # Combine sign, exponent, and significand
+    return sign_bit + " " + exponent_bits + " " + significand_bits
 
 
-# Ask the user to enter a number
+# Ask the user for input
 user_input = input("Enter a floating-point number: ")
 
-# Check for illegal characters/input
+# Check for illegal input
 try:
-    value = float(user_input)
+    number = float(user_input)
 
-    result = convert_float(value)
+    result = convert_float(number)
 
     print("Simplified floating-point representation:")
     print(result)
 
 except ValueError:
     print("ERROR: Illegal input. Please enter a valid number.")
+
+     
