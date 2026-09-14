@@ -10,6 +10,9 @@ def checkingInput(answer, answerType):
     if (len(answer) != 8): # making sure its 8 characters
         print("Your answer needs 8 characters!")
         return False
+    if not all(bit in "01" for bit in answer): # making sure it's binary only
+        print("Your answer must contain only 0s and 1s!")
+        return False
     return True
 
 
