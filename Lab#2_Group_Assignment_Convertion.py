@@ -47,7 +47,7 @@ def askInput():
     #ask the user for their input if it returns true 
     while (True):
         answer = input("Input an 8-bit binary string!: ")
-        answerType = input("Is this [2C] 2's complement or [SM] Signed magnitude?:")
+        answerType = input("Is this [2C] 2's complement or [SM] Signed magnitude?:").strip().upper()
         isValid = checkingInput(answer, answerType)
         if (isValid == True):
             break 
