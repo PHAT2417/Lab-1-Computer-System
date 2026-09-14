@@ -1,5 +1,6 @@
 # This program aims to converts a signed integer between signed magnitude and 2's complement. The input could be signed magnitude or 2's complement
-
+#Kristine Nguyen
+#Question 2
 
 #ask user for their input and if it returns false 
 def checkingInput(answer, answerType):
